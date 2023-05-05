@@ -332,24 +332,32 @@ role.save
 
 puts "Movies"
 puts "======"
-puts ""
 movies = Movie.where({"title" => "Batman Begins"}).or(Movie.where({"title" => "The Dark Knight"})).or(Movie.where({"title" => "The Dark Knight Rises"}))
+
 
 for movie in movies
     title = movie["title"]
     year = movie["year_released"]
     rating = movie["rating"]
-    puts "#{title} #{year} #{rating}"
+    studio = movie["studio_id"]
+    puts "#{title} - #{year} - #{rating} - #{studio}"
 
 end
-
-puts ""
-puts "Top Cast"
 puts "========"
 puts ""
 
-#first_name = salesperson["first_name"]
-#last_name = salesperson["last_name"]
 
-# display a string with the relevant columns
-#puts "#{first_name} #{last_name}"
+puts "Top Cast"
+puts "========"
+roles = Role.all
+
+for role in roles
+    movie = role["movie_id"]
+    actor = role["actor_id"]
+    name = role["character_name"]
+    puts "#{movie} - #{actor} - #{name}"
+puts "========"
+end
+
+
+
